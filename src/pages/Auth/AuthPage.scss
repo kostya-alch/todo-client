@@ -1,0 +1,12 @@
+.auth-page {
+   text-align: center;
+   max-width: 37.5em;
+   margin: 0 auto;
+   margin-top: 9.375em;
+   .btn-reg {
+      margin-left: 1.563em;
+      &:hover {
+         color: #1581b8;
+      }
+   }
+}
