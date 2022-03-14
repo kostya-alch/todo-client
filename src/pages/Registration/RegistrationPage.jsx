@@ -1,14 +1,14 @@
 import React from 'react'
 
 
-import './AuthPage.scss'
+import './RegistrationPage.scss'
 
-const AuthPage = () => {
+const RegistrationPage = () => {
     return (
         <>
             <div className="container">
                 <div className="auth-page">
-                    <h3>Авторизация</h3>
+                    <h3>Регистрация</h3>
                     <form className='form form-login'>
                         <div className="row">
                             <div className="input-field col s12">
@@ -30,15 +30,16 @@ const AuthPage = () => {
                         </div>
                         <div className="row">
                             <button className='wawes-effect wawes-light btn btn-blue hoverable '>
-                                Войти в аккаунт
+                                Регистрация на сайте
                             </button>
-                            <a href="/" className="btn-outline btn-reg">Нет аккаунта в приложении?</a>
+                            <a href="/" className="btn-outline btn-reg">Уже есть аккаунт?</a>
                         </div>
                     </form>
+
                 </div>
             </div>
         </>
     )
 }
 
-export default AuthPage
+export default RegistrationPage

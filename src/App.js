@@ -1,13 +1,10 @@
 import React from 'react';
-import Layout from './components/Layout/Layout';
-import AuthPage from './pages/Auth/AuthPage';
+import AppRouter from './components/AppRouter/AppRouter';
 
 const App = () => {
    return (
       <>
-         <Layout>
-            <AuthPage />
-         </Layout>
+         <AppRouter />
       </>
    );
 };
