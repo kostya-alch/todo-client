@@ -1,9 +1,17 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 
 import './AuthPage.scss'
 
 const AuthPage = () => {
+    const [form, setForm] = useState({
+        email: '',
+        password: ''
+    })
+    const changeHandler = (event) => {
+        setForm({ ...form, [event.target.name]: event.target.value })
+        console.log(form);
+    }
     return (
         <>
             <div className="container">
@@ -16,6 +24,7 @@ const AuthPage = () => {
                                     type="email"
                                     name='email'
                                     className='validate'
+                                    onChange={changeHandler}
                                 />
                                 <label htmlFor="email">Email</label>
                             </div>
@@ -24,6 +33,7 @@ const AuthPage = () => {
                                     type="password"
                                     name='password'
                                     className='validate'
+                                    onChange={changeHandler}
                                 />
                                 <label htmlFor="password">Password</label>
                             </div>
@@ -32,7 +42,7 @@ const AuthPage = () => {
                             <button className='wawes-effect wawes-light btn btn-blue hoverable '>
                                 Войти в аккаунт
                             </button>
-                            <a href="/" className="btn-outline btn-reg">Нет аккаунта в приложении?</a>
+                            <Link to="/registration" className="btn-outline btn-reg">Нет аккаунта в приложении?</Link>
                         </div>
                     </form>
                 </div>

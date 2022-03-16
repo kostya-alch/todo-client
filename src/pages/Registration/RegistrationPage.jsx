@@ -1,21 +1,44 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { Link } from "react-router-dom";
+import axios from 'axios'
 
 import './RegistrationPage.scss'
 
 const RegistrationPage = () => {
+    const [form, setForm] = useState({
+        email: '',
+        password: ''
+    })
+    const changeHandler = (event) => {
+        setForm({ ...form, [event.target.name]: event.target.value })
+    }
+    const submitForm = (event) => {
+        event.preventDefault();
+    }
+    const registerHandler = async () => {
+        try {
+            await axios.post('api/auth/registration', { ...form }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => console.log(response));
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <>
             <div className="container">
                 <div className="auth-page">
                     <h3>Регистрация</h3>
-                    <form className='form form-login'>
+                    <form onSubmit={submitForm} className='form form-login'>
                         <div className="row">
                             <div className="input-field col s12">
                                 <input
                                     type="email"
                                     name='email'
                                     className='validate'
+                                    onChange={changeHandler}
                                 />
                                 <label htmlFor="email">Email</label>
                             </div>
@@ -24,15 +47,18 @@ const RegistrationPage = () => {
                                     type="password"
                                     name='password'
                                     className='validate'
+                                    onChange={changeHandler}
                                 />
                                 <label htmlFor="password">Password</label>
                             </div>
                         </div>
                         <div className="row">
-                            <button className='wawes-effect wawes-light btn btn-blue hoverable '>
+                            <button
+                                onClick={registerHandler}
+                                className='wawes-effect wawes-light btn btn-blue hoverable '>
                                 Регистрация на сайте
                             </button>
-                            <a href="/" className="btn-outline btn-reg">Уже есть аккаунт?</a>
+                            <Link to="/login" className="btn-outline btn-reg">Уже есть аккаунт?</Link>
                         </div>
                     </form>
 
