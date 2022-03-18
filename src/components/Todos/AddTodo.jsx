@@ -1,6 +1,8 @@
 import React from 'react'
 
-const AddTodo = ({submitHandler, inputHandler, text, createTodo}) => {
+import './AddTodo.scss'
+
+const AddTodo = ({ submitHandler, inputHandler, text, createTodo }) => {
     return (
         <>
             <h4>Добавить задачу:</h4>

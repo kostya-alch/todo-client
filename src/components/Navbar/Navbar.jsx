@@ -13,10 +13,10 @@ const Navbar = () => {
                     <a href="/" className="brand-logo left">Список дел</a>
                     {
                         isLogin
-                            ? <ul id="nav-mobile" className="right hide-on-med-and-down">
+                            ? <ul id="nav-mobile" className="right">
                                 <li><Link className='hoverable link' to="/login" onClick={logout}>Выйти</Link></li>
                             </ul>
-                            : <ul id="nav-mobile" className="right hide-on-med-and-down">
+                            : <ul id="nav-mobile" className="right">
                                 <li><Link className='hoverable link' to="/login">Войти в аккаунт</Link></li>
                             </ul>
                     }

@@ -10,3 +10,19 @@
       }
    }
 }
+
+@media (max-width: 420px) {
+   .row-button-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+   }
+   .btn-login {
+      margin-bottom: 15px;
+      font-size: 19px;
+   }
+   .btn-reg {
+      font-size: 18px;
+      text-align: center;
+   }
+}

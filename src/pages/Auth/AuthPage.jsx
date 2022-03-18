@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../context/authContext';
@@ -45,8 +46,8 @@ const AuthPage = () => {
                                 <label htmlFor="password">Password</label>
                             </div>
                         </div>
-                        <div className="row">
-                            <button className='wawes-effect wawes-light btn btn-blue hoverable '
+                        <div className="row row-button-form">
+                            <button className='wawes-effect wawes-light btn btn-login btn-blue hoverable '
                                 onClick={loginHandler}>
                                 Войти в аккаунт
                             </button>

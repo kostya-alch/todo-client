@@ -14,10 +14,6 @@ const AppRouter = () => {
         <AuthContext.Provider value={{ login, logout, token, userId, isReady, isLogin }}>
             <BrowserRouter>
                 <Layout>
-                    {/* <Routes>
-                    <Route path="/login" element={<AuthPage />}></Route>
-                    <Route path="/registration" element={<RegistrationPage />}></Route>
-                </Routes> */}
                     {routes}
                 </Layout>
             </BrowserRouter>
