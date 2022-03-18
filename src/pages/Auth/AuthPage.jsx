@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
+import { AuthContext } from '../../context/authContext';
 
 import './AuthPage.scss'
 
@@ -8,16 +10,30 @@ const AuthPage = () => {
         email: '',
         password: ''
     })
+    const { login } = useContext(AuthContext);
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value })
-        console.log(form);
+    }
+    const submitForm = (event) => {
+        event.preventDefault();
+    }
+    const loginHandler = async () => {
+        try {
+            await axios.post('/api/auth/login', { ...form }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => login(response.data.token, response.data.userId));
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <>
             <div className="container">
                 <div className="auth-page">
                     <h3>Авторизация</h3>
-                    <form className='form form-login'>
+                    <form onSubmit={submitForm} className='form form-login'>
                         <div className="row">
                             <div className="input-field col s12">
                                 <input
@@ -39,7 +55,8 @@ const AuthPage = () => {
                             </div>
                         </div>
                         <div className="row">
-                            <button className='wawes-effect wawes-light btn btn-blue hoverable '>
+                            <button className='wawes-effect wawes-light btn btn-blue hoverable '
+                                onClick={loginHandler}>
                                 Войти в аккаунт
                             </button>
                             <Link to="/registration" className="btn-outline btn-reg">Нет аккаунта в приложении?</Link>

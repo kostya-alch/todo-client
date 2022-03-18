@@ -1,0 +1,16 @@
+.warning {
+   text-align: center;
+   &__text {
+      font-size: 45px;
+      font-weight: 600;
+      margin-top: 20px;
+   }
+   &__back {
+      display: block;
+      font-size: 22px;
+      text-decoration: none;
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}
