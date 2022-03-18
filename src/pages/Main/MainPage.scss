@@ -1,4 +1,3 @@
-
 .todos {
    margin-top: 50px;
    overflow-y: auto;
@@ -9,6 +8,24 @@
       align-items: center;
       cursor: pointer;
       border-left: 2px solid #2196f3;
+      position: relative;
+      &.completed {
+         border-left: 2px solid #00ca0a;
+         &::after {
+            content: '';
+            background: #f05829;
+            position: absolute;
+            height: 2px;
+            top: 50%;
+            width: 800px;
+            left: 25px;
+         }
+      }
+      &.important {
+         font-weight: 700;
+         color: #ca7300;
+         border-left: 2px solid #ca7300;
+      }
    }
    &-buttons {
       margin-left: auto;

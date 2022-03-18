@@ -60,6 +60,37 @@ const MainPage = () => {
             console.log(error);
         }
     }, [getTodo])
+
+    const completedTodo = useCallback(async (id) => {
+        try {
+            await axios.put(`/api/todo/complete/${id}`, { id }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                setTodos([...todos], response.data)
+                getTodo()
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }, [getTodo, todos])
+
+    const importantTodo = useCallback(async (id) => {
+        try {
+            await axios.put(`/api/todo/important/${id}`, { id }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                setTodos([...todos], response.data)
+                getTodo()
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }, [getTodo, todos])
+
     return (
         <>
             <div className="container">
@@ -75,7 +106,7 @@ const MainPage = () => {
                                     onChange={inputHandler}
                                     value={text}
                                 />
-                                <label htmlFor="input-todo">Задача: </label>
+                                <label htmlFor="input-todo">Задача:</label>
                             </div>
                         </div>
                         <div className="row">
@@ -89,14 +120,28 @@ const MainPage = () => {
                     <div className='todos'>
                         {
                             todos.map((todo, index) => {
+                                let classes = ['row flex todos-item']
+                                if (todo.completed) {
+                                    classes.push('completed')
+                                }
+                                if (todo.important) {
+                                    classes.push('important')
+                                }
                                 return (
-                                    <div className="row flex todos-item" key={index}>
+                                    <div className={classes.join(' ')} key={index}>
                                         <div className="col todos-num">{index + 1}</div>
                                         <div className="col todos-text">{todo.text}</div>
                                         <div className="col todos-buttons">
-                                            <i className="material-icons blue-text">add</i>
-                                            <i className="material-icons orange-text">warning</i>
-                                            <i onClick={() => removeTodo(todo._id)} className="material-icons red-text">delete</i>
+                                            <i
+                                                className="material-icons blue-text"
+                                                onClick={() => completedTodo(todo._id)}>check</i>
+                                            <i
+                                                className="material-icons orange-text"
+                                                onClick={() => importantTodo(todo._id)}
+                                            >warning</i>
+                                            <i
+                                                onClick={() => removeTodo(todo._id)}
+                                                className="material-icons red-text">delete</i>
                                         </div>
                                     </div>
                                 )

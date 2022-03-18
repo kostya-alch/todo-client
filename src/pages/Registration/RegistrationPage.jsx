@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 import './RegistrationPage.scss'
 
 const RegistrationPage = () => {
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         email: '',
         password: ''
-    })
+    });
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value })
-    }
+    };
     const submitForm = (event) => {
         event.preventDefault();
-    }
+    };
     const registerHandler = async () => {
         try {
             await axios.post('api/auth/registration', { ...form }, {
@@ -22,6 +23,7 @@ const RegistrationPage = () => {
                     'Content-Type': 'application/json'
                 }
             }).then(response => console.log(response));
+            navigate('/');
         } catch (error) {
             console.log(error);
         }
