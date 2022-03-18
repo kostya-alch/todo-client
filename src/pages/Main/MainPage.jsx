@@ -3,6 +3,7 @@ import axios from 'axios'
 import { AuthContext } from '../../context/authContext'
 
 import './MainPage.scss'
+import { getTodos, removeTodos } from '../../actions/todoAPI'
 
 const MainPage = () => {
     const [text, setText] = useState('')
@@ -16,16 +17,7 @@ const MainPage = () => {
         setText(event.target.value)
     }
     const getTodo = useCallback(async () => {
-        try {
-            await axios.get('/api/todo', {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                params: { userId }
-            }).then(response => setTodos(response.data))
-        } catch (error) {
-            console.log(error);
-        }
+        getTodos(userId, setTodos)
     }, [userId])
 
     const createTodo = useCallback(async () => {
@@ -50,15 +42,7 @@ const MainPage = () => {
     }, [getTodo])
 
     const removeTodo = useCallback(async (id) => {
-        try {
-            await axios.delete(`/api/todo/delete/${id}`, { id }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(() => getTodo())
-        } catch (error) {
-            console.log(error);
-        }
+        removeTodos(id, getTodo)
     }, [getTodo])
 
     const completedTodo = useCallback(async (id) => {

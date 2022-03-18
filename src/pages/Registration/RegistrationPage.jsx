@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios'
-
 import './RegistrationPage.scss'
+import { register } from '../../actions/userAPI';
 
 const RegistrationPage = () => {
     const navigate = useNavigate();
@@ -10,24 +9,20 @@ const RegistrationPage = () => {
         email: '',
         password: ''
     });
+
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value })
     };
+
     const submitForm = (event) => {
         event.preventDefault();
     };
-    const registerHandler = async () => {
-        try {
-            await axios.post('api/auth/registration', { ...form }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => console.log(response));
-            navigate('/');
-        } catch (error) {
-            console.log(error);
-        }
+
+    const registerHandler = () => {
+        register(form)
+        navigate('/');
     }
+
     return (
         <>
             <div className="container">

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../context/authContext';
@@ -18,15 +17,7 @@ const AuthPage = () => {
         event.preventDefault();
     }
     const loginHandler = async () => {
-        try {
-            await axios.post('/api/auth/login', { ...form }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => login(response.data.token, response.data.userId));
-        } catch (error) {
-            console.log(error);
-        }
+        login(form)
     }
     return (
         <>
