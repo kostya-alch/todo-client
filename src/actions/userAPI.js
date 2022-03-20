@@ -4,7 +4,7 @@ export const register = async (form) => {
    try {
       await axios
          .post(
-            'api/auth/registration',
+            'https://alch-todo-backend.herokuapp.com/api/auth/registration',
             { ...form },
             {
                headers: {
@@ -22,7 +22,7 @@ export const login = async (form) => {
    try {
       await axios
          .post(
-            '/api/auth/login',
+            'https://alch-todo-backend.herokuapp.com/api/auth/login',
             { ...form },
             {
                headers: {

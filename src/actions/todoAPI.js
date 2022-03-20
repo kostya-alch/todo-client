@@ -3,7 +3,7 @@ import axios from 'axios';
 export const getTodos = async (userId, setTodos) => {
    try {
       await axios
-         .get('/api/todo', {
+         .get('https://alch-todo-backend.herokuapp.com/api/todo', {
             headers: {
                'Content-Type': 'application/json',
             },
@@ -19,7 +19,7 @@ export const removeTodos = async (id, getTodo) => {
    try {
       await axios
          .delete(
-            `/api/todo/delete/${id}`,
+            `https://alch-todo-backend.herokuapp.com/api/todo/delete/${id}`,
             { id },
             {
                headers: {
@@ -45,7 +45,7 @@ export const createTodos = async (
    try {
       await axios
          .post(
-            '/api/todo/add',
+            'https://alch-todo-backend.herokuapp.com/api/todo/add',
             { text, userId },
             {
                headers: {
@@ -67,7 +67,7 @@ export const completedTodos = async (id, setTodos, todos, getTodo) => {
    try {
       await axios
          .put(
-            `/api/todo/complete/${id}`,
+            `https://alch-todo-backend.herokuapp.com/api/todo/complete/${id}`,
             { id },
             {
                headers: {
@@ -88,7 +88,7 @@ export const importantTodos = async (id, setTodos, todos, getTodo) => {
    try {
       await axios
          .put(
-            `/api/todo/important/${id}`,
+            `https://alch-todo-backend.herokuapp.com/api/todo/important/${id}`,
             { id },
             {
                headers: {
