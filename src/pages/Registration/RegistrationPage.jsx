@@ -49,7 +49,7 @@ const RegistrationPage = () => {
                                 <label htmlFor="password">Password</label>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row section-reg">
                             <button
                                 onClick={registerHandler}
                                 className='wawes-effect wawes-light btn btn-blue hoverable '>

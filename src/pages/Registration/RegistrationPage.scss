@@ -9,4 +9,10 @@
          color: #1581b8;
       }
    }
+   @media (max-width: 421px) {
+      .section-reg {
+         flex-direction: column;
+         align-items: center;
+      }
+   }
 }
