@@ -1,6 +1,8 @@
 
+import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
+import { loginAuth } from '../../actions/userAPI';
 import { AuthContext } from '../../context/authContext';
 
 import './AuthPage.scss'
@@ -10,7 +12,8 @@ const AuthPage = () => {
         email: '',
         password: ''
     })
-    const { login } = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
+
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value })
     }
@@ -18,7 +21,21 @@ const AuthPage = () => {
         event.preventDefault();
     }
     const loginHandler = async () => {
-        login(form)
+        try {
+            await axios
+                .post(
+                    'https://alch-todo-backend.herokuapp.com/api/auth/login',
+                    { ...form },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                )
+                .then((response) => login(response.data.token, response.data.userId));
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <>
