@@ -2,7 +2,6 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
-import { loginAuth } from '../../actions/userAPI';
 import { AuthContext } from '../../context/authContext';
 
 import './AuthPage.scss'
