@@ -5,13 +5,16 @@
    margin-top: 9.375em;
    .btn-reg {
       margin-left: 1.563em;
+      margin-bottom: 1.4rem;
+      font-size: 16px;
       &:hover {
          color: #1581b8;
       }
    }
-   @media (max-width: 421px) {
-      .section-reg {
-         flex-direction: column;
+   @media (min-width: 421px) {
+      .row-button-form {
+         display: flex;
+         justify-content: center;
          align-items: center;
       }
    }
