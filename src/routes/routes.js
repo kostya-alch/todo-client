@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import MainPage from './pages/Main/MainPage';
-import AuthPage from './pages/Auth/AuthPage';
-import RegistrationPage from './pages/Registration/RegistrationPage';
-import NotFound from './components/NotFound/NotFound';
+import MainPage from '../pages/Main/MainPage';
+import AuthPage from '../pages/Auth/AuthPage';
+import RegistrationPage from '../pages/Registration/RegistrationPage';
+import NotFound from '../components/NotFound/NotFound';
 
 export const useRoutes = (isLogin) => {
    if (isLogin)

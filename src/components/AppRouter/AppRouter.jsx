@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../Layout/Layout'
-import { useRoutes } from '../../routes';
+import { useRoutes } from '../../routes/routes';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
 import { useAuth } from '../../hooks/authHook';
