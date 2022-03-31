@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/authContext'
 
 import './MainPage.scss'
-import { completedTodos, createTodos, getTodos, importantTodos, removeTodos } from '../../actions/todoAPI'
+import { completedTodos, createTodos, getTodos, importantTodos, removeTodos } from '../../api/todoAPI'
 import AddTodo from '../../components/Todos/AddTodo'
 import ActiveTodos from '../../components/Todos/ActiveTodos'
 

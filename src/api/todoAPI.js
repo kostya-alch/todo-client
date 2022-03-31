@@ -1,8 +1,8 @@
-import axios from 'axios';
+import { instance } from '../constants/app';
 
 export const getTodos = async (userId, setTodos) => {
    try {
-      await axios
+      await instance
          .get('https://alch-todo-backend.herokuapp.com/api/todo', {
             headers: {
                'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export const getTodos = async (userId, setTodos) => {
 
 export const removeTodos = async (id, getTodo) => {
    try {
-      await axios
+      await instance
          .delete(
             `https://alch-todo-backend.herokuapp.com/api/todo/delete/${id}`,
             { id },
@@ -43,21 +43,11 @@ export const createTodos = async (
 ) => {
    if (!text) return null;
    try {
-      await axios
-         .post(
-            'https://alch-todo-backend.herokuapp.com/api/todo/add',
-            { text, userId },
-            {
-               headers: {
-                  'Content-Type': 'application/json',
-               },
-            }
-         )
-         .then((response) => {
-            setTodos([...todos], response.data);
-            setText('');
-            getTodo();
-         });
+      await instance.post('todo/add', { text, userId }).then((response) => {
+         setTodos([...todos], response.data);
+         setText('');
+         getTodo();
+      });
    } catch (error) {
       console.log(error);
    }
@@ -65,20 +55,10 @@ export const createTodos = async (
 
 export const completedTodos = async (id, setTodos, todos, getTodo) => {
    try {
-      await axios
-         .put(
-            `https://alch-todo-backend.herokuapp.com/api/todo/complete/${id}`,
-            { id },
-            {
-               headers: {
-                  'Content-Type': 'application/json',
-               },
-            }
-         )
-         .then((response) => {
-            setTodos([...todos], response.data);
-            getTodo();
-         });
+      await instance.put(`todo/complete/${id}`, { id }).then((response) => {
+         setTodos([...todos], response.data);
+         getTodo();
+      });
    } catch (error) {
       console.log(error);
    }
@@ -86,20 +66,10 @@ export const completedTodos = async (id, setTodos, todos, getTodo) => {
 
 export const importantTodos = async (id, setTodos, todos, getTodo) => {
    try {
-      await axios
-         .put(
-            `https://alch-todo-backend.herokuapp.com/api/todo/important/${id}`,
-            { id },
-            {
-               headers: {
-                  'Content-Type': 'application/json',
-               },
-            }
-         )
-         .then((response) => {
-            setTodos([...todos], response.data);
-            getTodo();
-         });
+      await instance.put(`todo/important/${id}`, { id }).then((response) => {
+         setTodos([...todos], response.data);
+         getTodo();
+      });
    } catch (error) {
       console.log(error);
    }
